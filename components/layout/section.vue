@@ -4,7 +4,6 @@
     <Tabs default-value="dashboard">
       <TabsList>
         <TabsTrigger value="dashboard"> 대시보드 </TabsTrigger>
-        <TabsTrigger value="order"> 주문 </TabsTrigger>
         <TabsTrigger value="design"> 디자인 작업 </TabsTrigger>
         <TabsTrigger value="draft"> 시안 </TabsTrigger>
         <TabsTrigger value="confirmation"> 고객 컴펌 </TabsTrigger>

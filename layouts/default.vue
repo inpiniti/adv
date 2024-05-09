@@ -15,7 +15,7 @@ const show = ref(false);
       </ScrollArea>
     </div>
     <Separator orientation="vertical" />
-    <div class="grow-[0] w-full">
+    <div class="grow-[0] w-full flex flex-col">
       <div class="shrink-0">
         <LayoutSection />
       </div>

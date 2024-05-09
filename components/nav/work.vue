@@ -1,10 +1,19 @@
+<script setup lang="ts">
+const props = defineProps<{
+  _work: IWork;
+}>();
+
+function onClickWork() {
+  work().value = props._work;
+}
+</script>
 <template>
-  <Card>
-    <div class="p-2">
-      <div class="font-bold">xxx음악학원</div>
-      <div>현수막 제작</div>
+  <Card @click="onClickWork">
+    <div class="p-2" v-if="_work">
+      <div class="font-bold">{{ _work?.customer_name }}</div>
+      <div>{{ _work?.work_item }}</div>
       <div class="font-bold">상태 : 주문</div>
-      <div>2024-04-12</div>
+      <div>{{ _work?.work_registration_date }}</div>
     </div>
   </Card>
 </template>
