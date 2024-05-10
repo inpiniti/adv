@@ -2,11 +2,7 @@
 import { ref } from "vue";
 import { toast } from "vue-sonner";
 
-import {
-  DateFormatter,
-  type DateValue,
-  getLocalTimeZone,
-} from "@internationalized/date";
+import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
 
 const df = new DateFormatter("ko-KR", {
   dateStyle: "long",
@@ -22,12 +18,7 @@ watch(
   () => {
     if (value.value) {
       let date = value.value.toDate(getLocalTimeZone());
-      let formattedDate =
-        date.getFullYear() +
-        "-" +
-        String(date.getMonth() + 1).padStart(2, "0") +
-        "-" +
-        String(date.getDate()).padStart(2, "0");
+      let formattedDate = date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0") + "-" + String(date.getDate()).padStart(2, "0");
       _work.value.deadline = formattedDate;
     }
   },
@@ -53,10 +44,8 @@ async function workPost() {
 <template>
   <div class="p-4 flex flex-col gap-4 h-full">
     <div>
-      <h3 class="text-lg font-medium">주문 등록</h3>
-      <p class="text-sm text-muted-foreground">
-        새로운 작업을 등록해주세요. 현수막, 자석 기타 등등...
-      </p>
+      <h3 class="text-lg font-bold">주문 등록</h3>
+      <p class="text-sm text-muted-foreground">새로운 작업을 등록해주세요. 현수막, 자석 기타 등등...</p>
     </div>
     <Separator />
     <div class="grid w-full items-center gap-1.5">
@@ -67,10 +56,7 @@ async function workPost() {
       <Label>품목</Label>
       <Select v-model="_work.work_item">
         <SelectTrigger>
-          <SelectValue
-            class="text-neutral-500"
-            placeholder="품목을 선택해주세요."
-          />
+          <SelectValue class="text-neutral-500" placeholder="품목을 선택해주세요." />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -89,20 +75,14 @@ async function workPost() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <p class="text-neutral-400 text-xs">
-        현수막 X-Y 배너 차량자석 롤포스터 어깨띠 명찰 인쇄 합성지 펫트 투명필름
-        기타
-      </p>
+      <p class="text-neutral-400 text-xs">현수막 X-Y 배너 차량자석 롤포스터 어깨띠 명찰 인쇄 합성지 펫트 투명필름 기타</p>
     </div>
     <div class="grid w-full items-center gap-1.5">
       <Label>사이즈</Label>
       <div class="flex gap-4 items-center">
         <Select v-model="_work.work_size">
           <SelectTrigger>
-            <SelectValue
-              class="text-neutral-500"
-              placeholder="폭을 선택해주세요"
-            />
+            <SelectValue class="text-neutral-500" placeholder="폭을 선택해주세요" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -122,10 +102,7 @@ async function workPost() {
         <div class="text-neutral-400">x</div>
         <Input v-model="_work.work_width" type="type" placeholder="사이즈" />
       </div>
-      <p class="text-neutral-400 text-xs">
-        현수막 규격폭 : 60, 70, 90, 100, 110, 127, 150, 180cm... (180cm이상은
-        2장이상 이어 가공됩니다)
-      </p>
+      <p class="text-neutral-400 text-xs">현수막 규격폭 : 60, 70, 90, 100, 110, 127, 150, 180cm... (180cm이상은 2장이상 이어 가공됩니다)</p>
     </div>
     <div class="grid w-full items-center gap-1.5">
       <Label>수량</Label>
@@ -135,34 +112,22 @@ async function workPost() {
     <div class="grid w-full items-center gap-1.5">
       <Label>내용</Label>
       <Input v-model="_work.work_description" type="type" placeholder="내용" />
-      <p class="text-neutral-400 text-xs">
-        선택하신 샘플에서 수정사항을 기재해 주세요.
-      </p>
+      <p class="text-neutral-400 text-xs">선택하신 샘플에서 수정사항을 기재해 주세요.</p>
     </div>
     <div class="grid w-full items-center gap-1.5">
       <Label>이름</Label>
       <Input v-model="_work.customer_name" type="type" placeholder="이름" />
-      <p class="text-neutral-400 text-xs">
-        고객의 이름 또는 상호명을 입력해 주세요.
-      </p>
+      <p class="text-neutral-400 text-xs">고객의 이름 또는 상호명을 입력해 주세요.</p>
     </div>
     <div class="grid w-full items-center gap-1.5">
       <Label>전화번호</Label>
-      <Input
-        v-model="_work.customer_phone"
-        type="type"
-        placeholder="전화번호"
-      />
-      <p class="text-neutral-400 text-xs">
-        휴대폰 번호등의 연락처를 입력해주세요.
-      </p>
+      <Input v-model="_work.customer_phone" type="type" placeholder="전화번호" />
+      <p class="text-neutral-400 text-xs">휴대폰 번호등의 연락처를 입력해주세요.</p>
     </div>
     <div class="grid w-full items-center gap-1.5">
       <Label>주소</Label>
       <Input v-model="_work.customer_address" type="type" placeholder="주소" />
-      <p class="text-neutral-400 text-xs">
-        설치 장소 또는 고객의 영업장 주소를 작성해 주세요.
-      </p>
+      <p class="text-neutral-400 text-xs">설치 장소 또는 고객의 영업장 주소를 작성해 주세요.</p>
     </div>
     <div class="grid w-full items-center gap-1.5">
       <Label>이메일</Label>
@@ -173,20 +138,8 @@ async function workPost() {
       <Label>마감일</Label>
       <Popover>
         <PopoverTrigger as-child>
-          <Button
-            variant="outline"
-            :class="
-              cn(
-                'w-[280px] justify-start text-left font-normal',
-                !value && 'text-muted-foreground'
-              )
-            "
-          >
-            {{
-              value
-                ? df.format(value.toDate(getLocalTimeZone()))
-                : "Pick a date"
-            }}
+          <Button variant="outline" :class="cn('w-[280px] justify-start text-left font-normal', !value && 'text-muted-foreground')">
+            {{ value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date" }}
           </Button>
         </PopoverTrigger>
         <PopoverContent class="w-auto p-0">

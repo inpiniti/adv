@@ -5,9 +5,16 @@ const props = defineProps<{
 
 function onClickWork() {
   work().value = work().value = props._work;
+
+  // work.post 화면인 경우 section 을 참조하여  화면 이동
+  const newSection = useRoute().path.split("/")[1];
+  if (newSection === "work.post") {
+    const section = useState("section");
+    navigateTo(`/${section.value}`);
+  }
 }
 
-const 남은일자 = computed(() => {
+const remainingDays = computed(() => {
   if (props._work.deadline) {
     let deadline = new Date(props._work.deadline);
     let today = new Date();
@@ -19,13 +26,13 @@ const 남은일자 = computed(() => {
 });
 </script>
 <template>
-  <Card @click="onClickWork">
+  <Card @click="onClickWork" class="cursor-pointer" :class="{ 'bg-neutral-100': work().value == props._work }">
     <div class="p-2 text-xs flex flex-col gap-1" v-if="_work">
       <div class="flex justify-between">
         <Badge>
           {{ WORK_ITEM[_work?.work_item as keyof typeof WORK_ITEM] }}
         </Badge>
-        <div>{{ 남은일자 }}일 남음</div>
+        <div>{{ remainingDays }}일 남음</div>
       </div>
       <div class="text-sm font-bold">{{ _work?.work_name }}</div>
       <div class="flex gap-3">
@@ -40,7 +47,7 @@ const 남은일자 = computed(() => {
       </div>
       <div class="text-neutral-400">
         {{ _work?.work_registration_date }} ~
-        <span class="text-red-400">{{ _work?.deadline }}</span>
+        {{ _work?.deadline }}
       </div>
     </div>
   </Card>
