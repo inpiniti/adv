@@ -6,12 +6,8 @@ const props = defineProps<{
 function onClickWork() {
   work().value = work().value = props._work;
 
-  // work.post 화면인 경우 section 을 참조하여  화면 이동
-  const newSection = useRoute().path.split("/")[1];
-  if (newSection === "work.post") {
-    const section = useState("section");
-    navigateTo(`/${section.value}`);
-  }
+  const section = useState("section");
+  navigateTo(`/${section.value || "dashboard"}`);
 }
 
 const remainingDays = computed(() => {

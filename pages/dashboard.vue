@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const loading = ref(false);
 
+const _work = work();
+
 async function onClickDelete() {
   loading.value = true;
   await useWork().del(work().value);
@@ -29,10 +31,33 @@ async function onClickDelete() {
       <Card class="p-4">입금</Card>
     </div>
     <Separator />
-    <div>
-      <div>현수막</div>
-      <div>교회 현수막 10장</div>
+    <div class="flex flex-col gap-3">
+      <div class="grid w-full items-center gap-1.5">
+        <Label>제목</Label>
+        <Input v-model="_work.work_name" type="type" readonly />
+      </div>
+      <div class="grid w-full items-center gap-1.5">
+        <Label>품목</Label>
+        <Input v-model="WORK_ITEM[_work?.work_item as keyof typeof WORK_ITEM]" type="type" readonly />
+      </div>
+      <div class="grid w-full items-center gap-1.5">
+        <Label>사이즈</Label>
+        <div class="flex gap-4 items-center">
+          <Input v-model="_work.work_size" type="type" readonly />
+          <div class="text-neutral-400">x</div>
+          <Input v-model="_work.work_width" type="type" readonly />
+        </div>
+      </div>
+      <div class="grid w-full items-center gap-1.5">
+        <Label>수량</Label>
+        <Input v-model="_work.work_quantity" type="type" readonly />
+      </div>
+      <div class="grid w-full items-center gap-1.5">
+        <Label>내용</Label>
+        <Input v-model="_work.work_description" type="type" placeholder="내용" />
+      </div>
     </div>
+    <Separator />
     <div>
       <AlertDialog>
         <AlertDialogTrigger as-child>
