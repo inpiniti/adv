@@ -1,12 +1,4 @@
-import {
-  pgTable,
-  serial,
-  text,
-  integer,
-  date,
-  varchar,
-  PgColumn,
-} from "drizzle-orm/pg-core";
+import { pgTable, serial, text, integer, date } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 

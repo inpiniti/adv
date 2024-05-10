@@ -20,7 +20,7 @@ const show = ref(false);
         <LayoutSection />
       </div>
       <Separator />
-      <ScrollArea class="grow-[0]">
+      <ScrollArea class="grow-[0] bg-neutral-50 h-full">
         <slot />
       </ScrollArea>
     </div>

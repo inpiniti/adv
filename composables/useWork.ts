@@ -50,9 +50,21 @@ async function post(data: IWork): Promise<IWork> {
   return response.json() as unknown as IWork;
 }
 
+async function del(data: IWork): Promise<IWork> {
+  const response = await fetch("/api/work", {
+    method: "delete",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json() as unknown as IWork;
+}
+
 export const useWork = () => {
   return {
     get,
     post,
+    del,
   };
 };

@@ -1,3 +1,13 @@
+<script setup lang="ts">
+const loading = ref(false);
+
+async function onClickDelete() {
+  loading.value = true;
+  await useWork().del(work().value);
+  works().value = await useWork().get();
+  loading.value = false;
+}
+</script>
 <template>
   <div class="p-4 flex flex-col gap-4">
     <div>
@@ -26,7 +36,8 @@
     <div>
       <AlertDialog>
         <AlertDialogTrigger as-child>
-          <Button variant="destructive"> 주문 삭제 </Button>
+          <Button variant="destructive" v-if="loading"> loading... </Button>
+          <Button variant="destructive" v-else> 주문 삭제 </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -35,7 +46,7 @@
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>아니오</AlertDialogCancel>
-            <AlertDialogAction>네</AlertDialogAction>
+            <AlertDialogAction @click="onClickDelete">네</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
