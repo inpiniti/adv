@@ -8,5 +8,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ["shadcn-nuxt"],
+  modules: ["shadcn-nuxt", "nuxt-file-storage"],
 });
