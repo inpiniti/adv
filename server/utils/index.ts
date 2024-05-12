@@ -31,3 +31,10 @@ export const Work = pgTable("work", {
   deadline: date("deadline").notNull(),
   work_width: integer("work_width").notNull(),
 });
+
+export const Draft = pgTable("draft", {
+  draft_id: serial("draft_id").primaryKey(),
+  work_id: integer("work_id").notNull(),
+  draft_image_path: text("draft_image_path").notNull(),
+  draft_registration_date: date("draft_registration_date").notNull(),
+});

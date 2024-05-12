@@ -3,16 +3,13 @@ import {
   PutObjectCommand,
   ObjectCannedACL,
 } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+const AWS_REGION = process.env.AWS_REGION;
+const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 export default defineEventHandler(async (event) => {
-  // NUXT 런타임 환경 구성에서 AWS 액세스 키, 시크릿 액세스 키 및 REGION을 가져옴
-  //const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = useRuntimeConfig();
-  const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-  const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-  const AWS_REGION = process.env.AWS_REGION;
-  const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-
   if (
     !AWS_ACCESS_KEY_ID ||
     !AWS_SECRET_ACCESS_KEY ||
@@ -32,9 +29,6 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  // 핸들러 이벤트에서 쿼리를 가져옴
-  let query: any = getQuery(event);
-
   // 파일을 요청 본문에서 가져옴
   const body = await readBody(event);
 
@@ -42,9 +36,6 @@ export default defineEventHandler(async (event) => {
   const file = body.files[0];
   const base64Data = file.content.replace(/^data:image\/\w+;base64,/, "");
   const dataBuffer = Buffer.from(base64Data, "base64");
-
-  console.log("file", file);
-  console.log("buffer", file.buffer);
 
   // 현재 시간을 기반으로 고유한 파일 키 생성
   const timestamp = new Date().getTime();
@@ -64,6 +55,12 @@ export default defineEventHandler(async (event) => {
 
   // 업로드된 파일의 URL 생성
   const url = `https://${AWS_BUCKET_NAME}.s3.amazonaws.com/${key}`;
+
+  await db.insert(Draft).values({
+    work_id: body.work_id,
+    draft_image_path: url,
+    draft_registration_date: new Date().toISOString(),
+  });
 
   // URL 반환
   return url;

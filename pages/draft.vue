@@ -1,41 +1,36 @@
 <script setup lang="ts">
 import Dialog from "./draft/components/dialog.vue";
 
-interface Invoice {
-  id: string;
-  img: string;
-  time: string;
-  selected?: boolean;
+const _drafts = drafts();
+const _work = work();
+
+onMounted(async () => {
+  onRefresh();
+});
+
+watch(
+  () => [_work.value, _drafts.value],
+  () => {
+    onRefresh();
+  },
+  { deep: true }
+);
+
+// 다시조회
+async function onRefresh() {
+  _drafts.value = await useDraft().get();
 }
 
-const invoices: Invoice[] = [
-  {
-    id: "1",
-    img: "Paid",
-    time: "$250.00",
-  },
-  {
-    id: "2",
-    img: "Paid",
-    time: "$250.00",
-  },
-  {
-    id: "3",
-    img: "Paid",
-    time: "$250.00",
-  },
-];
-
-function onClick(id: string) {
-  const invoice = invoices.find((invoice: Invoice) => invoice.id === id);
-  if (invoice) {
-    invoice.selected = !invoice.selected as boolean;
+function onClick(id: number) {
+  const draft = _drafts.value.find((draft: IDraft) => draft.draft_id === id);
+  if (draft) {
+    draft.selected = !draft.selected as boolean;
   }
 }
 
 function onClickDelete() {
-  const deletes = invoices.filter(
-    (invoice: Invoice) => invoice.selected == true
+  const deletes = _drafts.value.filter(
+    (draft: IDraft) => draft.selected == true
   );
   console.log("delete");
 }
@@ -77,18 +72,20 @@ function onClickDelete() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow v-for="invoice in invoices" :key="invoice.id">
+        <TableRow v-for="draft in _drafts" :key="draft.draft_id">
           <TableCell class="font-medium border-t">
-            <Checkbox id="terms" @click="onClick(invoice.id)" />
+            <Checkbox id="terms" @click="onClick(draft.draft_id)" />
           </TableCell>
           <TableCell class="border-t">
             <img
-              class="rounded-lg"
-              src="https://via.placeholder.com/150"
+              class="rounded-lg h-44"
+              :src="draft.draft_image_path"
               alt="draft"
             />
           </TableCell>
-          <TableCell class="border-t">{{ invoice.time }}</TableCell>
+          <TableCell class="border-t">{{
+            draft.draft_registration_date
+          }}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
