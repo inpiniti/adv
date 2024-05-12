@@ -9,7 +9,7 @@ onMounted(async () => {
 });
 
 watch(
-  () => [_work.value, _drafts.value],
+  () => [_work.value],
   () => {
     onRefresh();
   },

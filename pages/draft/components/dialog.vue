@@ -3,8 +3,8 @@
 const { handleFileInput, files } = useFileStorage();
 
 const submit = async () => {
-  save();
-  onRefresh();
+  await save();
+  await onRefresh();
   open.value = false;
 };
 
