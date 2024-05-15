@@ -14,7 +14,9 @@ async function onClickDelete() {
   <div class="p-4 flex flex-col gap-4">
     <div>
       <h3 class="text-lg font-bold">대시보드</h3>
-      <p class="text-sm text-muted-foreground">작업 현황을 한눈에 볼 수 있습니다.</p>
+      <p class="text-sm text-muted-foreground">
+        작업 현황을 한눈에 볼 수 있습니다.
+      </p>
     </div>
     <Separator />
     <div class="flex gap-4 items-center">
@@ -31,14 +33,18 @@ async function onClickDelete() {
       <Card class="p-4">입금</Card>
     </div>
     <Separator />
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3" v-if="_work">
       <div class="grid w-full items-center gap-1.5">
         <Label>제목</Label>
         <Input v-model="_work.work_name" type="type" readonly />
       </div>
       <div class="grid w-full items-center gap-1.5">
         <Label>품목</Label>
-        <Input v-model="WORK_ITEM[_work?.work_item as keyof typeof WORK_ITEM]" type="type" readonly />
+        <Input
+          v-model="WORK_ITEM[_work?.work_item as keyof typeof WORK_ITEM]"
+          type="type"
+          readonly
+        />
       </div>
       <div class="grid w-full items-center gap-1.5">
         <Label>사이즈</Label>
@@ -54,7 +60,11 @@ async function onClickDelete() {
       </div>
       <div class="grid w-full items-center gap-1.5">
         <Label>내용</Label>
-        <Input v-model="_work.work_description" type="type" placeholder="내용" />
+        <Input
+          v-model="_work.work_description"
+          type="type"
+          placeholder="내용"
+        />
       </div>
     </div>
     <Separator />
@@ -67,7 +77,9 @@ async function onClickDelete() {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>정말로 삭제하시겠습니까??</AlertDialogTitle>
-            <AlertDialogDescription> 한번 삭제하면 모든 데이터가 삭제되며, 되돌릴수 없습니다. </AlertDialogDescription>
+            <AlertDialogDescription>
+              한번 삭제하면 모든 데이터가 삭제되며, 되돌릴수 없습니다.
+            </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>아니오</AlertDialogCancel>
