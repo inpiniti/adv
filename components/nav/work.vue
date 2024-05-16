@@ -4,6 +4,7 @@ const props = defineProps<{
 }>();
 
 function onClickWork() {
+  useShowDetail().value = true;
   work().value = work().value = props._work;
 
   const section = useState("section");
