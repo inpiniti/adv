@@ -22,7 +22,7 @@ const isMobile = useMobile();
 </script>
 <template>
   <div class="px-4 py-2 flex justify-between items-center">
-    <div class="font-bold" @click="onClick" v-if="isMobile">뒤로 가기</div>
+    <div class="font-bold text-blue-500" @click="onClick" v-if="isMobile">목록</div>
     <div class="font-bold" v-else>작업 현황</div>
     <Tabs default-value="dashboard" v-model="section" @click="onClickSection">
       <TabsList>
