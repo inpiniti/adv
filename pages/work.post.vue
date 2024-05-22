@@ -148,27 +148,36 @@ async function workPost() {
       </Popover>
       <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
     </div>
-    <div class="w-full items-center gap-1.5 flex">
+    <div class="w-full items-center gap-1.5 flex border rounded-lg p-4 bg-white">
       <div class="grow-[0] w-full">
-        <Label>마감일</Label>
+        <Label>시안유무</Label>
         <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
       </div>
       <div class="shrink-0">
         <Switch />
       </div>
     </div>
-    <div class="w-full items-center gap-1.5 flex">
+    <div class="w-full items-center gap-1.5 flex border rounded-lg p-4 bg-white">
       <div class="grow-[0] w-full">
-        <Label>마감일</Label>
+        <Label>제작유무</Label>
         <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
       </div>
       <div class="shrink-0">
         <Switch />
       </div>
     </div>
-    <div class="w-full items-center gap-1.5 flex">
+    <div class="w-full items-center gap-1.5 flex border rounded-lg p-4 bg-white">
       <div class="grow-[0] w-full">
-        <Label>마감일</Label>
+        <Label>설치유무</Label>
+        <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
+      </div>
+      <div class="shrink-0">
+        <Switch />
+      </div>
+    </div>
+    <div class="w-full items-center gap-1.5 flex border rounded-lg p-4 bg-white">
+      <div class="grow-[0] w-full">
+        <Label>크레인유무</Label>
         <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
       </div>
       <div class="shrink-0">
@@ -182,4 +191,3 @@ async function workPost() {
     </div>
   </div>
 </template>
-components/ui/switch
