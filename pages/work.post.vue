@@ -148,6 +148,33 @@ async function workPost() {
       </Popover>
       <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
     </div>
+    <div class="w-full items-center gap-1.5 flex">
+      <div class="grow-[0] w-full">
+        <Label>마감일</Label>
+        <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
+      </div>
+      <div class="shrink-0">
+        <Switch />
+      </div>
+    </div>
+    <div class="w-full items-center gap-1.5 flex">
+      <div class="grow-[0] w-full">
+        <Label>마감일</Label>
+        <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
+      </div>
+      <div class="shrink-0">
+        <Switch />
+      </div>
+    </div>
+    <div class="w-full items-center gap-1.5 flex">
+      <div class="grow-[0] w-full">
+        <Label>마감일</Label>
+        <p class="text-neutral-400 text-xs">필수로 지정해주세요.</p>
+      </div>
+      <div class="shrink-0">
+        <Switch />
+      </div>
+    </div>
     <div class="flex gap-4 text-xs">
       <Button v-if="loading"> loading... </Button>
       <Button @click="workPost" v-else>주문 등록</Button>
@@ -155,3 +182,4 @@ async function workPost() {
     </div>
   </div>
 </template>
+components/ui/switch
