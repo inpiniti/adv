@@ -1,4 +1,4 @@
-export interface IWork {
+export interface IItem {
   id: number;
   work_name: string;
   work_item: string;
@@ -15,7 +15,7 @@ export interface IWork {
   work_width: number;
 }
 
-export const WORK_ITEM = {
+export const ITEM_ITEM = {
   billboard: "현수막",
   banner: "배너",
   car_magnet: "차량자석",
@@ -50,17 +50,17 @@ export const WORK_ITEM = {
 // 금액 : 설치단가 * 수량
 // 크레인단가 * 시간 + 인건비 * 인원
 
-export const works = () => useState<IWork[]>("works");
-export const work = () => useState<IWork>("work");
+const items = useState<IWork[]>("items");
+const item = useState<IWork>("item");
 
-async function get(): Promise<IWork[]> {
+async function getFetch(): Promise<IWork[]> {
   const response = await fetch("/api/work", {
     method: "get",
   });
   return response.json() as unknown as IWork[];
 }
 
-async function post(data: IWork): Promise<IWork> {
+async function postFetch(data: IWork): Promise<IWork> {
   const response = await fetch("/api/work", {
     method: "post",
     headers: {
@@ -71,7 +71,7 @@ async function post(data: IWork): Promise<IWork> {
   return response.json() as unknown as IWork;
 }
 
-async function del(data: IWork): Promise<IWork> {
+async function delFetch(data: IWork): Promise<IWork> {
   const response = await fetch("/api/work", {
     method: "delete",
     headers: {
@@ -82,10 +82,32 @@ async function del(data: IWork): Promise<IWork> {
   return response.json() as unknown as IWork;
 }
 
-export const useWork = () => {
-  return {
-    get,
-    post,
-    del,
-  };
+const getItem = () => {
+  return item;
 };
+
+const setItem = (newItem: IWork) => {
+  item.value = newItem;
+};
+
+const getItems = () => {
+  return items;
+};
+
+const setItems = (newItems: IWork[]) => {
+  items.value = newItems;
+};
+
+export const useItem = (function () {
+  return {
+    getItem,
+    setItem,
+
+    getItems,
+    setItems,
+
+    getFetch,
+    postFetch,
+    delFetch,
+  };
+})();
