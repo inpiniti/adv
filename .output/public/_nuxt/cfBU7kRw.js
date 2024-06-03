@@ -1,0 +1,1 @@
+import{I as e,s}from"./DvAY-tOQ.js";const d=()=>e("drafts");async function n(){return(await fetch(`/api/draft/${s().value.id}`,{method:"get"})).json()}async function a(t){return(await fetch("/api/draft",{method:"delete",headers:{"Content-Type":"application/json"},body:JSON.stringify(t)})).json()}const i=()=>({get:n,del:a});export{d,i as u};

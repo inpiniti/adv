@@ -1,0 +1,1 @@
+import{_ as t}from"./DlAUqK2U.js";import{c as s,o,a as e}from"./DvAY-tOQ.js";const c={},n={class:"p-4 h-full w-full flex flex-col gap-4 items-center justify-center"},i=e("div",null,"안녕하세요.",-1),_=e("div",null,"ads.inpiniti.p-e.kr 입니다.",-1),l=e("div",null,"이용해주셔서 감사합니다.",-1),r=[i,_,l];function a(d,f){return o(),s("div",n,r)}const h=t(c,[["render",a]]);export{h as default};

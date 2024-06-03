@@ -1,0 +1,1 @@
+import{c as o}from"./BLYTg4dL.js";import{n as a,o as n,c,C as t,H as d,u as l}from"./DvAY-tOQ.js";const f=a({__name:"Card",props:{class:{}},setup(s){const r=s;return(e,m)=>(n(),c("div",{class:d(l(o)("rounded-lg border bg-card text-card-foreground shadow-sm",r.class))},[t(e.$slots,"default")],2))}});export{f as _};
